@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+    <style>
+        .buttonToLink {
+            background: none;
+            border: none;
+            color: red
+        }
+
+        .buttonToLink:hover {
+            background: none;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>User list</h1>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+
+    <a href="/admin/create">Create user</a><br/>
+    <a href="/logout">Logout</a><br/><br/>
+    <br/>
+
+    <div th:if="${userList.isEmpty}">
+        <div>No data</div>
+    </div>
+
+    <div th:if="${!userList.isEmpty()}">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Update user</th>
+                <th>Remove user</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${userList}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td><a th:href="@{/admin/update/{id}(id=${user.id})}">update</a></td>
+                <td>
+                    <form th:action="@{/admin/remove/{id}(id=${user.id})}" th:method="post">
+                        <button class="buttonToLink" type="submit">remove</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

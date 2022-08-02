@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<h1>Welcome</h1>
+
+<a href="/logout">Logout</a><br/><br/>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/admin/users">User list</a><br/><br/>
+</div>
+
+<label>Name: <span th:text="${user.name}"></span></label><br/>
+<label>Last name: <span th:text="${user.lastName}"></span></label><br/>
+
+</body>
+</html>
