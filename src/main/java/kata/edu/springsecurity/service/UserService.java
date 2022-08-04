@@ -17,4 +17,6 @@ public interface UserService {
     User update(Long id, String name, String lastName);
 
     void remove(Long id);
+
+    void removeFromUsersRoles(Long userId);
 }

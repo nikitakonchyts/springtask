@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.id == null} ? 'User create' : 'User update'"></title>
+</head>
+<body>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+
+    <h1>Set role</h1>
+    <a href="/logout">Logout</a><br/><br/>
+    <form method="post" th:Object="${user}" th:action="@{/admin/setRole/{id}(id=${user.id})}">
+        <input id="id" th:field="*{id}" type="hidden"/>
+        <div>
+            <label>Role:</label>
+            <input name="role" type="text"/>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -62,4 +62,10 @@ public class UserServiceImpl implements UserService {
     public void remove(Long id) {
         userRepository.deleteById(id);
     }
+
+
+    @Override
+    public void removeFromUsersRoles(Long userId) {
+        userRepository.removeRoleWithUser(userId);
+    }
 }

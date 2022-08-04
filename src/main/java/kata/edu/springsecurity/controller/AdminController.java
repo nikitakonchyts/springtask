@@ -35,10 +35,17 @@ public class AdminController {
         modelMap.addAttribute("user", userService.getOne(id));
         return "user_manage";
     }
+
     @GetMapping("/create")
     public String pageCreate(ModelMap modelMap) {
         modelMap.addAttribute("user", new User());
         return "user_manage";
+    }
+
+    @GetMapping("/setRole/{id}")
+    public String pageSetRole(ModelMap modelMap, @PathVariable("id") Long id) {
+        modelMap.addAttribute("user", userService.getOne(id));
+        return "role";
     }
 
     @PostMapping("/create")
@@ -55,6 +62,7 @@ public class AdminController {
 
     @PostMapping("/remove/{id}")
     public String remove(@PathVariable("id") Long id) {
+        userService.removeFromUsersRoles(id);
         userService.remove(id);
         return "redirect:/admin/users";
     }

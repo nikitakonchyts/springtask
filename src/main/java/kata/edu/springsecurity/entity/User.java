@@ -3,6 +3,7 @@ package kata.edu.springsecurity.entity;
 import kata.edu.springsecurity.entity.parent.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

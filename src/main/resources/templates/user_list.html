@@ -23,6 +23,7 @@
 <div sec:authorize="hasRole('ROLE_ADMIN')">
 
     <a href="/admin/create">Create user</a><br/>
+    <a href="/admin/allRole">Role List</a><br/>
     <a href="/logout">Logout</a><br/><br/>
     <br/>
 
@@ -37,6 +38,7 @@
                 <th>Name</th>
                 <th>Last name</th>
                 <th>Update user</th>
+                <th>Set role</th>
                 <th>Remove user</th>
             </tr>
             </thead>
@@ -45,6 +47,7 @@
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td><a th:href="@{/admin/update/{id}(id=${user.id})}">update</a></td>
+                <td><a th:href="@{/admin/setRole/{id}(id=${user.id})}">set role</a></td>
                 <td>
                     <form th:action="@{/admin/remove/{id}(id=${user.id})}" th:method="post">
                         <button class="buttonToLink" type="submit">remove</button>
