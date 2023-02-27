@@ -10,9 +10,12 @@
 
 <div sec:authorize="hasRole('ROLE_ADMIN')">
 
+    <a href="/logout">Logout</a><br/>
+    <a href="/admin/users">Back</a><br/><br/>
+    <br/>
+
     <div th:if="${user.id == null}">
         <h1>User create</h1>
-        <a href="/logout">Logout</a><br/><br/>
         <form method="post" th:Object="${user}" th:action="@{/admin/create}">
             <div>
                 <label>Name:</label>
@@ -36,7 +39,6 @@
 
     <div th:if="${user.id != null}">
         <h1>User update</h1>
-        <a href="/logout">Logout</a><br/><br/>
         <form method="post" th:Object="${user}" th:action="@{/admin/update/{id}(id=${user.id})}">
             <input id="id" th:field="*{id}" type="hidden"/>
             <div>
@@ -46,6 +48,10 @@
             <div>
                 <label>Last name:</label>
                 <input th:field="*{lastName}" type="text"/>
+            </div>
+            <div>
+                <label>Username:</label>
+                <input th:field="*{username}" type="text"/>
             </div>
             <button type="submit">Save</button>
         </form>

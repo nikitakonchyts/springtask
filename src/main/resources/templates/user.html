@@ -9,7 +9,7 @@
 <body>
 <h1>Welcome</h1>
 
-<a href="/logout">Logout</a><br/><br/>
+<a href="/logout">Logout</a><br/>
 
 <div sec:authorize="hasRole('ROLE_ADMIN')">
     <a href="/admin/users">User list</a><br/><br/>
@@ -17,6 +17,17 @@
 
 <label>Name: <span th:text="${user.name}"></span></label><br/>
 <label>Last name: <span th:text="${user.lastName}"></span></label><br/>
+<table border="1">
+        <th>Role: </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="role: ${user.roles}">
+        <td th:text="${role.getName}"></td>
+    </tr>
+    </tbody>
+</table>
+
 
 </body>
 </html>
